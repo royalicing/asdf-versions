@@ -23,6 +23,9 @@ fn_version_regex = $(subst $(SPACE),|,$(subst .,\.,$(1)))
 
 default: pull install_parallel
 
+qwen3.5:
+	llama-server -hf unsloth/Qwen3.5-35B-A3B-GGUF:Q4_K_M
+
 pull:
 	-git pull --rebase
 
@@ -102,8 +105,10 @@ extra:
 	git config --global rerere.enabled true
 	asdf reshim
 	npm i -g --no-fund npm
+	npm install -g @openai/codex
 	npm install -g @anthropic-ai/claude-code
 	npm install -g @google/gemini-cli
+	npm install -g netlify-cli
 	pip install -q -U pip
 	pip install -q httpstat
 	pip install -q yt-dlp
